@@ -1,0 +1,49 @@
+Installation de la traduction Française
+---------------------------------------
+
+Pre-requis
+----------
+Le paquet suivant est nécessaire au bon fonctionnement des traductions pour l'interface Centreon web : 
+- gettext
+
+Pour Debian et Ubuntu :
+ # sudo apt-get install gettext
+
+Pour RedHat, CentOS et Fedora Core :
+ # sudo yum install gettext
+
+Pour Suse et OpenSuse :
+ # sudo zypper install gettext
+
+
+Mise en place des fichiers de traduction
+----------------------------------------
+Pour les commandes suivantes nous considèrerons que Centreon web est installé dans le répertoire "/usr/share/centreon".
+Les commandes suivantes sont à adapter en fonction du répertoire d'installation de Centreon.
+
+Création du répertoire et copie des fichiers de traduction (messages.mo et help.mo) :
+ # mkdir -p /usr/share/centreon/www/locale/`locale | grep LC_MESSAGES | cut -d \" -f 2`/LC_MESSAGES
+ # cp LC_MESSAGES/*.mo /usr/share/centreon/www/locale/`locale | grep LC_MESSAGES | cut -d \" -f 2`/LC_MESSAGES
+
+Ajout des droits pour l'utilisateur Apache :
+- Pour Debian et Ubuntu :
+  # chown -R www-data.www-data /usr/share/centreon/www/locale/fr_FR.UTF-8
+
+- Pour RedHat, CentOS et Fedora Core :
+  # chown -R apache.apache /usr/share/centreon/www/locale/fr_FR.UTF-8
+
+- Pour Suse et OpenSuse :
+  # chown -R wwwrun.www /usr/share/centreon/www/locale/fr_FR.UTF-8
+
+Rédemarrage d'Apache :
+- Pour Debian et Ubuntu :
+  # /etc/init.d/apache2 restart
+
+- Pour RedHat, CentOS et Fedora Core :
+  # /etc/init.d/httpd restart
+
+- Pour Suse et OpenSuse :
+  # /etc/init.d/apache2 restart
+
+La traduction mise en place devrait apparaitre dans la configuration des utilisateurs.
+
