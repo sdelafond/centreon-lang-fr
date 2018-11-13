@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/default.mk
+
+DESTDIR := $(CURDIR)/debian/$(shell dh_listpackages)
+FR_DIR := $(DESTDIR)/usr/share/centreon/www/locale/fr_FR.UTF-8
+
+%:
+	dh $@ 
+
+override_dh_install:
+	mkdir -p $(FR_DIR)
+	cp LC_MESSAGES/*.mo $(FR_DIR)
